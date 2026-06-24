@@ -704,23 +704,23 @@
             </div>
         </div>
 
-        <!-- อัลบั้มโพลาลอยด์บันทึกรอยยิ้มน่ารักของเจ้าเด็ก -->
+        <!-- อัลบั้มสมุดภาพโพลาลอยด์น่ารักของเจ้าเด็ก -->
         <div class="polaroid-container">
             <div class="polaroid-title">
                 <i class="fa-solid fa-images"></i> อัลบั้มรอยยิ้มแสนหวานของเจ้าเด็ก ✨
             </div>
             <div class="polaroid-grid">
                 <!-- โพลาลอยด์ใบที่ 1 -->
-                <div class="polaroid-card polaroid-1" onclick="openLightbox('Screenshot 2026-06-24 082000.jpg', 'คนเก่งยิ้มสวยที่สุดของพี่เลยนะ 🧸')">
+                <div class="polaroid-card polaroid-1" onclick="openLightbox(document.getElementById('polaroid-img-1').src, 'คนเก่งยิ้มสวยที่สุดของพี่เลยนะ 🧸')">
                     <div class="polaroid-frame">
-                        <img src="Screenshot 2026-06-24 082000.jpg" alt="เจ้าเด็กใบที่ 1" onerror="this.src='Screenshot 2026-06-24 082025.jpg'">
+                        <img id="polaroid-img-1" src="Screenshot 2026-06-24 082000.jpg" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
                     </div>
                     <div class="polaroid-caption">คนเก่งของพี่ 🧸</div>
                 </div>
                 <!-- โพลาลอยด์ใบที่ 2 -->
-                <div class="polaroid-card polaroid-2" onclick="openLightbox('Screenshot 2026-06-24 082108.jpg', 'เจ้าเด็กดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
+                <div class="polaroid-card polaroid-2" onclick="openLightbox(document.getElementById('polaroid-img-2').src, 'เจ้าเด็กดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
                     <div class="polaroid-frame">
-                        <img src="Screenshot 2026-06-24 082108.jpg" alt="เจ้าเด็กใบที่ 2" onerror="this.src='Screenshot 2026-06-24 082025.jpg'">
+                        <img id="polaroid-img-2" src="Screenshot 2026-06-24 082108.jpg" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
                     </div>
                     <div class="polaroid-caption">เจ้าเด็กแสนน่ารัก 🐰</div>
                 </div>
@@ -796,21 +796,90 @@
     </div>
 
     <script>
-        // รายการรูปภาพเจ้าเด็กที่จะสลับวนในกรอบอวาตาร์หลัก
-        const gusAvatars = [
+        // รายการรูปภาพอวาตาร์หลักของเจ้าเด็กแบบ Fallback เผื่ออัปโหลดเป็นสกุลอื่น
+        const receiverFallbacks = [
             'Screenshot 2026-06-24 082025.jpg',
-            'Screenshot 2026-06-24 082000.jpg',
-            'Screenshot 2026-06-24 082108.jpg'
+            'Screenshot 2026-06-24 082025.png',
+            'Screenshot 2026-06-24 082025.JPG',
+            'Screenshot 2026-06-24 082025.PNG',
+            'Screenshot 2026-06-24 082025.jpeg',
+            'Screenshot%202026-06-24%20082025.jpg',
+            'Screenshot%202026-06-24%20082025.png'
         ];
-        let gusAvatarIdx = 0;
+        let receiverFallbackIdx = 0;
 
+        function handleReceiverError() {
+            const img = document.getElementById('receiver-img');
+            if (receiverFallbackIdx < receiverFallbacks.length - 1) {
+                receiverFallbackIdx++;
+                img.src = receiverFallbacks[receiverFallbackIdx];
+            } else {
+                img.style.display = 'none';
+                document.getElementById('receiver-fallback').style.display = 'flex';
+            }
+        }
+
+        // ระบบ Fallback ของภาพโพลาลอยด์ 1
+        const polaroid1Fallbacks = [
+            'Screenshot 2026-06-24 082000.jpg',
+            'Screenshot 2026-06-24 082000.png',
+            'Screenshot 2026-06-24 082000.JPG',
+            'Screenshot 2026-06-24 082000.PNG',
+            'Screenshot 2026-06-24 082000.jpeg',
+            'Screenshot%202026-06-24%20082000.jpg',
+            'Screenshot%202026-06-24%20082000.png'
+        ];
+        let polaroid1Idx = 0;
+
+        function handlePolaroid1Error(img) {
+            if (polaroid1Idx < polaroid1Fallbacks.length - 1) {
+                polaroid1Idx++;
+                img.src = polaroid1Fallbacks[polaroid1Idx];
+            } else {
+                img.src = 'https://placehold.co/200x250/ffe5ec/4a47a3?text=Gus+1';
+            }
+        }
+
+        // ระบบ Fallback ของภาพโพลาลอยด์ 2
+        const polaroid2Fallbacks = [
+            'Screenshot 2026-06-24 082108.jpg',
+            'Screenshot 2026-06-24 082108.png',
+            'Screenshot 2026-06-24 082108.JPG',
+            'Screenshot 2026-06-24 082108.PNG',
+            'Screenshot 2026-06-24 082108.jpeg',
+            'Screenshot%202026-06-24%20082108.jpg',
+            'Screenshot%202026-06-24%20082108.png'
+        ];
+        let polaroid2Idx = 0;
+
+        function handlePolaroid2Error(img) {
+            if (polaroid2Idx < polaroid2Fallbacks.length - 1) {
+                polaroid2Idx++;
+                img.src = polaroid2Fallbacks[polaroid2Idx];
+            } else {
+                img.src = 'https://placehold.co/200x250/e8f0fe/4a47a3?text=Gus+2';
+            }
+        }
+
+        // ระบบสลับเปลี่ยนภาพอวาตาร์ไปมา
+        let gusAvatarIdx = 0;
         function cycleGusAvatar() {
             playPopSound();
-            gusAvatarIdx = (gusAvatarIdx + 1) % gusAvatars.length;
+            gusAvatarIdx = (gusAvatarIdx + 1) % 3;
             const img = document.getElementById('receiver-img');
-            img.src = gusAvatars[gusAvatarIdx];
             
-            // ปล่อยหัวใจลอยพุ่งเมื่อจิ้มหน้าเจ้าเด็ก
+            // กำหนดภาพหลักตามลำดับและเปิดระบบ Fallback ของรอบนั้นๆ ใหม่
+            if (gusAvatarIdx === 0) {
+                img.src = 'Screenshot 2026-06-24 082025.jpg';
+                receiverFallbackIdx = 0;
+            } else if (gusAvatarIdx === 1) {
+                img.src = 'Screenshot 2026-06-24 082000.jpg';
+                receiverFallbackIdx = 1; // เริ่มค้นหาจาก png โลด
+            } else {
+                img.src = 'Screenshot 2026-06-24 082108.jpg';
+                receiverFallbackIdx = 1;
+            }
+            
             for (let i = 0; i < 4; i++) {
                 createParticle(window.innerWidth / 2 + 100, window.innerHeight / 2, '💖');
             }
@@ -820,12 +889,6 @@
         function handleSenderError() {
             document.getElementById('sender-img').style.display = 'none';
             document.getElementById('sender-fallback').style.display = 'flex';
-        }
-
-        // ตัวสำรองกรณีรูปภาพเจ้าเด็กเสีย
-        function handleReceiverError() {
-            document.getElementById('receiver-img').style.display = 'none';
-            document.getElementById('receiver-fallback').style.display = 'flex';
         }
 
         // ระบบขยายรูปสไตล์ Lightbox
@@ -1073,3 +1136,4 @@
     </script>
 </body>
 </html>
+```
