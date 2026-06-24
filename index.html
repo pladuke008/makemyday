@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Well Soon, Gus! 💖 อยู่ข้างๆ น้องกัสเสมอนะครับ</title>
-    <!-- นำเข้าฟอนต์ Google Fonts สุดน่ารัก และ Font Awesome -->
+    <title>Get Well Soon, My Love! 💖 อยู่เคียงข้างเจ้าเด็กเสมอนะครับ</title>
+    
+    <!-- นำเข้าฟอนต์พรีเมียมและไอคอนน่ารัก -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -27,6 +30,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Fredoka', 'Kanit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -36,12 +40,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* เมฆพาสเทลลอยชิลๆ ด้านหลัง */
+        /* เมฆพาสเทลลอยละล่อง */
         .cloud {
             position: absolute;
             background: rgba(255, 255, 255, 0.75);
@@ -58,14 +62,14 @@
         }
         .cloud-1 {
             width: 140px; height: 45px; top: 8%; left: -8%;
-            animation: floatCloud 28s infinite linear;
+            animation: floatCloud 30s infinite linear;
         }
         .cloud-1::before { width: 65px; height: 65px; top: -25px; left: 15px; }
         .cloud-1::after { width: 45px; height: 45px; top: -15px; right: 15px; }
 
         .cloud-2 {
-            width: 180px; height: 50px; top: 80%; right: -12%;
-            animation: floatCloudReverse 32s infinite linear;
+            width: 180px; height: 50px; top: 75%; right: -12%;
+            animation: floatCloudReverse 35s infinite linear;
         }
         .cloud-2::before { width: 80px; height: 80px; top: -35px; left: 25px; }
         .cloud-2::after { width: 60px; height: 60px; top: -20px; right: 25px; }
@@ -79,17 +83,35 @@
             100% { transform: translateX(-110vw); }
         }
 
+        /* หัวใจลอยระยิบระยับขึ้นด้านบนอย่างต่อเนื่อง */
+        .sparkle-heart {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            bottom: -50px;
+            animation: floatUpHeart 10s infinite linear;
+            z-index: 2;
+            font-size: 20px;
+        }
+
+        @keyframes floatUpHeart {
+            0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.4) rotate(360deg); opacity: 0; }
+        }
+
         /* การ์ดแก้วบำบัดหัวใจ */
         .healing-card {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 4px solid var(--primary-cute-pink);
-            border-radius: 35px;
-            box-shadow: 0 15px 45px rgba(255, 133, 162, 0.25);
+            border-radius: 36px;
+            box-shadow: 0 20px 50px rgba(255, 133, 162, 0.22);
             width: 100%;
-            max-width: 530px;
-            padding: 35px 25px;
+            max-width: 500px;
+            padding: 32px 24px;
             text-align: center;
             z-index: 10;
             position: relative;
@@ -98,22 +120,22 @@
 
         @keyframes cardWobble {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-6px) rotate(0.4deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
         }
 
-        /* ป้ายติดการ์ดด้านบน */
+        /* ป้ายริบบิ้นติดการ์ดด้านบน */
         .heart-badge {
             position: absolute;
             top: -24px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--primary-cute-pink);
+            background: linear-gradient(135deg, var(--primary-cute-pink), #ff5c8a);
             color: white;
-            padding: 8px 24px;
+            padding: 8px 26px;
             border-radius: 50px;
             font-size: 15px;
             font-weight: 700;
-            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.35);
+            box-shadow: 0 6px 16px rgba(255, 133, 162, 0.35);
             border: 3px solid white;
             display: inline-flex;
             align-items: center;
@@ -122,17 +144,17 @@
         }
 
         h1.title {
-            font-size: 26px;
+            font-size: 25px;
             color: var(--text-dark);
             margin-top: 15px;
             font-weight: 700;
-            text-shadow: 2px 2px 0px #fff;
+            text-shadow: 1px 1px 0px #fff;
         }
 
         p.subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: #7d79cc;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             font-weight: 500;
         }
 
@@ -141,10 +163,10 @@
             align-items: center;
             justify-content: space-around;
             background: linear-gradient(135deg, #fff0f3, #e8f0fe);
-            border-radius: 25px;
-            padding: 18px 12px;
+            border-radius: 24px;
+            padding: 16px 12px;
             border: 3px dashed var(--primary-cute-pink);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             position: relative;
         }
 
@@ -156,23 +178,23 @@
         }
 
         .avatar-frame {
-            width: 82px;
-            height: 82px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             border: 4px solid white;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             overflow: hidden;
-            background: white;
+            background: #fff0f3;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .avatar-frame:hover {
-            transform: scale(1.08);
+            transform: scale(1.1) rotate(4deg);
         }
 
         .avatar-frame img {
@@ -182,7 +204,7 @@
         }
 
         .avatar-frame .fallback-icon {
-            font-size: 34px;
+            font-size: 32px;
             color: var(--primary-cute-pink);
         }
 
@@ -191,13 +213,13 @@
             font-size: 12px;
             font-weight: 700;
             color: var(--text-dark);
-            background: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.9);
             padding: 2px 10px;
             border-radius: 12px;
             border: 1px solid var(--primary-cute-lavender);
         }
 
-        /* ตัวเชื่อมสายใยด้ายแดงและหัวใจเต้น */
+        /* สายใยหัวใจเต้นตรงกลาง */
         .connection-bridge {
             display: flex;
             flex-direction: column;
@@ -205,7 +227,7 @@
             justify-content: center;
             flex-grow: 1;
             position: relative;
-            padding: 0 8px;
+            padding: 0 6px;
         }
 
         .line-thread {
@@ -225,36 +247,35 @@
 
         @keyframes pulseHeart {
             0% { transform: scale(1); }
-            50% { transform: scale(1.28); }
+            50% { transform: scale(1.3); }
             100% { transform: scale(1); }
         }
 
         .connection-text {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             color: #ff5c8a;
-            margin-top: 14px;
+            margin-top: 15px;
             text-shadow: 1px 1px 0 #fff;
             animation: textFloat 2.5s infinite ease-in-out;
         }
 
         @keyframes textFloat {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
+            50% { transform: translateY(-3px); }
         }
 
-        /* อัลบั้มโพลาลอยด์บันทึกรอยยิ้มน้องกัส */
+        /* อัลบั้มสมุดภาพโพลาลอยด์น่ารักของเจ้าเด็ก */
         .polaroid-container {
-            background: #fffdf5;
+            background: #fffdf6;
             border: 2px dashed #e8c5db;
-            border-radius: 24px;
-            padding: 16px 12px;
-            margin-bottom: 22px;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);
+            border-radius: 22px;
+            padding: 14px 10px;
+            margin-bottom: 20px;
         }
 
         .polaroid-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: #8c76ac;
             margin-bottom: 12px;
@@ -267,53 +288,49 @@
         .polaroid-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         .polaroid-card {
             background: white;
             padding: 8px 8px 12px 8px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-            border: 1px solid #eee;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #f1ecef;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             position: relative;
         }
 
-        /* ตกแต่งด้วยเทปกาวแปะหัวการ์ดสุดน่ารัก */
+        /* แผ่นเทปใสแปะขอบรูปเก๋ๆ */
         .polaroid-card::before {
             content: '';
             position: absolute;
-            top: -10px;
+            top: -8px;
             left: 50%;
-            transform: translateX(-50%) rotate(-4deg);
-            width: 50px;
-            height: 15px;
-            background: rgba(255, 211, 232, 0.6);
+            transform: translateX(-50%) rotate(-3deg);
+            width: 45px;
+            height: 14px;
+            background: rgba(255, 211, 232, 0.55);
             backdrop-filter: blur(1px);
-            border-left: 2px dashed rgba(255,255,255,0.5);
-            border-right: 2px dashed rgba(255,255,255,0.5);
             z-index: 5;
         }
 
         .polaroid-card:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 8px 18px rgba(112, 110, 204, 0.12);
+            transform: scale(1.06) rotate(1deg);
+            box-shadow: 0 10px 20px rgba(112, 110, 204, 0.12);
             z-index: 20;
         }
 
-        /* ปรับองศาเอียงขัดกันเพิ่มความน่ารักแบบสมุดบันทึก */
         .polaroid-1 { transform: rotate(-3deg); }
         .polaroid-2 { transform: rotate(3deg); }
 
         .polaroid-frame {
             width: 100%;
-            height: 120px;
+            height: 110px;
             border-radius: 4px;
             overflow: hidden;
             background: #fdfdfd;
-            border: 1px solid #f0f0f0;
         }
 
         .polaroid-frame img {
@@ -331,30 +348,27 @@
             font-size: 11px;
             font-weight: 700;
             color: #6d5b8c;
-            margin-top: 8px;
+            margin-top: 6px;
             text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
-        /* แถบฟื้นฟูพลังความสุข */
+        /* เกจสะสมเกราะพลังงานหัวใจ */
         .happiness-container {
             background: #fff;
             border: 3px solid var(--primary-cute-lavender);
             border-radius: 50px;
             padding: 4px;
-            margin-bottom: 22px;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.04);
             position: relative;
         }
 
         .happiness-bar {
-            height: 24px;
+            height: 22px;
             width: 40%;
             background: linear-gradient(90deg, #ff9ebb, #ff5c8a);
             border-radius: 50px;
-            transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
@@ -365,21 +379,21 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(
                 45deg,
-                rgba(255,255,255,0.25) 25%,
+                rgba(255,255,255,0.2) 25%,
                 transparent 25%,
                 transparent 50%,
-                rgba(255,255,255,0.25) 50%,
-                rgba(255,255,255,0.25) 75%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0.2) 75%,
                 transparent 75%,
                 transparent
             );
-            background-size: 20px 20px;
-            animation: stripMove 1.5s linear infinite;
+            background-size: 15px 15px;
+            animation: stripMove 1.2s linear infinite;
         }
 
         @keyframes stripMove {
             0% { background-position: 0 0; }
-            100% { background-position: 20px 0; }
+            100% { background-position: 15px 0; }
         }
 
         .bar-label {
@@ -387,31 +401,28 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-dark);
             text-shadow: 1px 1px 0 #fff;
             pointer-events: none;
             z-index: 5;
-            width: 90%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            width: 100%;
         }
 
-        /* ไอเทมวิเศษส่งพลังใจ */
+        /* ไอเทมกดส่งพลังรักกุ๊กกิ๊ก */
         .items-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 22px;
         }
 
         .care-item {
             background: white;
             border: 2px dashed #b1a7fc;
-            border-radius: 18px;
-            padding: 10px 4px;
+            border-radius: 16px;
+            padding: 8px 2px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -420,12 +431,12 @@
             transform: translateY(-4px) scale(1.05);
             border-color: var(--primary-cute-pink);
             background: #fff0f3;
-            box-shadow: 0 6px 12px rgba(255, 133, 162, 0.12);
+            box-shadow: 0 4px 10px rgba(255, 133, 162, 0.15);
         }
 
         .care-item .item-icon {
-            font-size: 26px;
-            margin-bottom: 4px;
+            font-size: 24px;
+            margin-bottom: 2px;
             display: inline-block;
         }
 
@@ -434,44 +445,44 @@
         }
 
         @keyframes bounceShake {
-            0% { transform: translateY(0) rotate(-6deg); }
-            100% { transform: translateY(-4px) rotate(6deg); }
+            0% { transform: translateY(0) rotate(-5deg); }
+            100% { transform: translateY(-3px) rotate(5deg); }
         }
 
         .care-item span.item-name {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--text-dark);
             display: block;
         }
 
-        /* ซองจดหมายห่วงใยจากพี่ปลาดุก */
+        /* โซนเปิดซองจดหมายสัญญารัก 4 หัวข้อสำคัญ */
         .letters-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 22px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .envelope {
             background: #fff;
             border: 2px solid var(--primary-cute-pink);
             border-radius: 16px;
-            padding: 12px;
+            padding: 10px;
             cursor: pointer;
             position: relative;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            min-height: 90px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.02);
             overflow: hidden;
         }
 
         .envelope:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 15px rgba(255, 133, 162, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(255, 133, 162, 0.15);
         }
 
         .envelope.opened {
@@ -480,49 +491,50 @@
         }
 
         .envelope-content {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-dark);
-            line-height: 1.4;
+            line-height: 1.35;
             display: none;
+            padding: 2px;
         }
 
         .envelope i.heart-stamp {
             position: absolute;
-            font-size: 24px;
+            font-size: 22px;
             color: var(--primary-cute-pink);
-            transition: transform 0.3s;
+            transition: transform 0.25s;
         }
 
         .envelope.opened i.heart-stamp {
             transform: scale(0);
         }
 
-        /* ปุ่มกระจายพลังใจ */
+        /* ปุ่มแผ่พลังสะบัดหัวใจดุ๊กดิ๊ก */
         .action-btn {
             background: linear-gradient(135deg, var(--primary-cute-pink) 0%, #ff5c8a 100%);
             color: white;
             border: 3px solid #ff2a60;
-            border-radius: 20px;
-            font-size: 15px;
+            border-radius: 18px;
+            font-size: 14px;
             font-weight: 700;
-            padding: 12px 18px;
+            padding: 10px 16px;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 5px 12px rgba(255, 92, 138, 0.25);
+            box-shadow: 0 4px 10px rgba(255, 92, 138, 0.25);
             transition: all 0.2s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .action-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 18px rgba(255, 92, 138, 0.4);
+            box-shadow: 0 6px 16px rgba(255, 92, 138, 0.35);
         }
 
-        /* ปุ่มเพลงบำบัดกล่อมสมอง */
+        /* สวิตช์ปิดเปิดเพลงกล่อมบำบัดประสาทสัมผัส */
         .music-btn {
             position: absolute;
             top: 15px;
@@ -530,8 +542,8 @@
             background: white;
             border: 2px solid var(--primary-cute-lavender);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -547,22 +559,22 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* พลุและหัวใจดุ๊กดิ๊ก */
+        /* หัวใจอนุภาคเวลากด */
         .particle {
             position: absolute;
             pointer-events: none;
             z-index: 99;
-            font-size: 24px;
-            animation: particleFly 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            font-size: 22px;
+            animation: particleFly 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         @keyframes particleFly {
             0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 1; }
             50% { opacity: 1; }
-            100% { transform: translateY(-160px) translateX(var(--x-offset)) scale(1.6) rotate(var(--rot-offset)); opacity: 0; }
+            100% { transform: translateY(-150px) translateX(var(--x-offset)) scale(1.5) rotate(var(--rot-offset)); opacity: 0; }
         }
 
-        /* แกลเลอรีรูปขยายเต็มหน้าจอ (Lightbox Overlay) */
+        /* โมดอลขยายรูปเต็มหน้าจอ */
         .lightbox {
             display: none;
             position: fixed;
@@ -584,10 +596,10 @@
         .lightbox-img {
             max-width: 90%;
             max-height: 75%;
-            border: 8px solid white;
+            border: 6px solid white;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: scale(0.9);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transform: scale(0.95);
             transition: transform 0.3s ease;
         }
 
@@ -597,35 +609,35 @@
 
         .lightbox-caption {
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
-            margin-top: 15px;
+            margin-top: 12px;
             text-align: center;
-            background: rgba(0,0,0,0.4);
-            padding: 6px 18px;
+            background: rgba(0,0,0,0.5);
+            padding: 6px 16px;
             border-radius: 20px;
         }
 
         .lightbox-close {
             position: absolute;
             top: 20px; right: 20px;
-            color: white; font-size: 32px;
+            color: white; font-size: 30px;
             cursor: pointer;
             background: rgba(255,255,255,0.2);
-            width: 44px; height: 44px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
         }
 
         .footer-credit {
-            margin-top: 20px;
-            font-size: 13px;
+            margin-top: 18px;
+            font-size: 11px;
             font-weight: 600;
             color: #796a91;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 4px;
         }
 
         .footer-credit i {
@@ -635,14 +647,14 @@
 
         @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.22); }
+            50% { transform: scale(1.2); }
         }
     </style>
 </head>
 <body>
 
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
+    <!-- ระบบหัวใจลอยในพื้นหลัง -->
+    <div id="stars-container"></div>
 
     <div class="healing-card">
         
@@ -655,20 +667,20 @@
             <i class="fa-solid fa-hand-holding-heart"></i> Get Well Soon, Gus!
         </div>
 
-        <h1 class="title">หายป่วยไวๆ นะครับน้องกัส 💖</h1>
-        <p class="subtitle">ส่งมอบพลังวิเศษและความรักหนานุ่มจากพี่ปลาดุกถึงน้องกัสคนเก่งนะ</p>
+        <h1 class="title">หายป่วยไวๆ นะคะเจ้าเด็ก 💖</h1>
+        <p class="subtitle">พี่ส่งมอบยาใจวิเศษและความห่วงใยไปกอดเจ้าเด็กแน่นๆ น้า</p>
 
-        <!-- ZONE: สายใยพี่ปลาดุกและน้องกัสเคียงข้างกันเสมอ -->
+        <!-- ZONE: พี่และเจ้าเด็กเคียงข้างกันเสมอ -->
         <div class="together-zone">
-            <!-- ฝั่งพี่ปลาดุก -->
+            <!-- ฝั่งพี่ -->
             <div class="avatar-box">
                 <div class="avatar-frame">
-                    <img id="sender-img" src="1781770654106.jpg" alt="พี่ปลาดุก" onerror="handleSenderError()">
+                    <img id="sender-img" src="1781770654106.jpg" alt="พี่" onerror="handleSenderError()">
                     <div id="sender-fallback" class="fallback-icon" style="display:none;">
                         <i class="fa-solid fa-cat"></i>
                     </div>
                 </div>
-                <div class="avatar-label">พี่ปลาดุก 🐱</div>
+                <div class="avatar-label">พี่ 🐱</div>
             </div>
 
             <!-- สายใยเชื่อมโยงใจและด้ายแดงหัวใจเต้น -->
@@ -677,52 +689,51 @@
                     <i class="fa-solid fa-heart"></i>
                 </div>
                 <div class="line-thread"></div>
-                <div class="connection-text">อยู่ข้างๆ เสมอนะครับ</div>
+                <div class="connection-text">อยู่ข้างๆ เสมอนะคะ</div>
             </div>
 
-            <!-- ฝั่งน้องกัส -->
+            <!-- ฝั่งเจ้าเด็ก -->
             <div class="avatar-box">
-                <!-- กดจิ้มอวาตาร์น้องกัส เพื่อเปลี่ยนสลับรูปเล่นได้ทันทีแบบน่ารัก -->
-                <div class="avatar-frame" onclick="cycleGusAvatar()" title="คลิกสลับรูปน้องกัส">
-                    <img id="receiver-img" src="Screenshot 2026-06-24 082025.jpg" alt="น้องกัส" onerror="handleReceiverError()">
+                <div class="avatar-frame" onclick="cycleGusAvatar()" title="คลิกสลับรูปเจ้าเด็ก">
+                    <img id="receiver-img" src="Screenshot 2026-06-24 082025.jpg" alt="เจ้าเด็ก" onerror="handleReceiverError()">
                     <div id="receiver-fallback" class="fallback-icon" style="display:none;">
-                        <i class="fa-solid fa-face-smile-wink" style="color: #ff85be;"></i>
+                        <i class="fa-solid fa-face-smile-wink"></i>
                     </div>
                 </div>
-                <div class="avatar-label">น้องกัส 🐰</div>
+                <div class="avatar-label">เจ้าเด็ก 🐰</div>
             </div>
         </div>
 
-        <!-- อัลบั้มโพลาลอยด์บันทึกรอยยิ้มน่ารักของน้องกัส -->
+        <!-- อัลบั้มโพลาลอยด์บันทึกรอยยิ้มน่ารักของเจ้าเด็ก -->
         <div class="polaroid-container">
             <div class="polaroid-title">
-                <i class="fa-solid fa-images"></i> อัลบั้มรอยยิ้มแสนหวานของน้องกัส ✨
+                <i class="fa-solid fa-images"></i> อัลบั้มรอยยิ้มแสนหวานของเจ้าเด็ก ✨
             </div>
             <div class="polaroid-grid">
                 <!-- โพลาลอยด์ใบที่ 1 -->
-                <div class="polaroid-card polaroid-1" onclick="openLightbox('Screenshot 2026-06-24 082000.jpg', 'คนเก่งยิ้มสวยที่สุดของพี่ปลาดุก 🧸')">
+                <div class="polaroid-card polaroid-1" onclick="openLightbox('Screenshot 2026-06-24 082000.jpg', 'คนเก่งยิ้มสวยที่สุดของพี่เลยนะ 🧸')">
                     <div class="polaroid-frame">
-                        <img src="Screenshot 2026-06-24 082000.jpg" alt="น้องกัสใบที่ 1" onerror="this.src='https://placehold.co/200x250/ffe5ec/4a47a3?text=Gus+Smiling'">
+                        <img src="Screenshot 2026-06-24 082000.jpg" alt="เจ้าเด็กใบที่ 1" onerror="this.src='Screenshot 2026-06-24 082025.jpg'">
                     </div>
-                    <div class="polaroid-caption">คนเก่งของพี่ปลาดุก 🧸</div>
+                    <div class="polaroid-caption">คนเก่งของพี่ 🧸</div>
                 </div>
                 <!-- โพลาลอยด์ใบที่ 2 -->
-                <div class="polaroid-card polaroid-2" onclick="openLightbox('Screenshot 2026-06-24 082108.jpg', 'กัสดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
+                <div class="polaroid-card polaroid-2" onclick="openLightbox('Screenshot 2026-06-24 082108.jpg', 'เจ้าเด็กดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
                     <div class="polaroid-frame">
-                        <img src="Screenshot 2026-06-24 082108.jpg" alt="น้องกัสใบที่ 2" onerror="this.src='https://placehold.co/200x250/e8f0fe/4a47a3?text=Gus+Cute+Collage'">
+                        <img src="Screenshot 2026-06-24 082108.jpg" alt="เจ้าเด็กใบที่ 2" onerror="this.src='Screenshot 2026-06-24 082025.jpg'">
                     </div>
-                    <div class="polaroid-caption">กัสดุ๊กดิ๊กแสนน่ารัก 🐰</div>
+                    <div class="polaroid-caption">เจ้าเด็กแสนน่ารัก 🐰</div>
                 </div>
             </div>
         </div>
 
-        <!-- แถบวัดสะสมพลังใจบำบัดรักษารอยยิ้มน้องกัส -->
+        <!-- แถบวัดสะสมพลังกายใจ -->
         <div class="happiness-container">
-            <div id="bar-label" class="bar-label">พลังความสุขใจของน้องกัส: 40%</div>
+            <div id="bar-label" class="bar-label">พลังรักเยียวยาใจเจ้าเด็ก: 40%</div>
             <div id="happiness-bar" class="happiness-bar"></div>
         </div>
 
-        <!-- โซนปุ่มไอเทมวิเศษส่งพลังฟื้นฟูสุขภาพ -->
+        <!-- ปุ่มไอเทมป้อนพลังความรัก -->
         <div class="items-grid">
             <div class="care-item" onclick="addHappiness(15, '🧸')">
                 <div class="item-icon">🧸</div>
@@ -742,38 +753,42 @@
             </div>
         </div>
 
-        <!-- โซนเปิดซองจดหมายซ่อนข้อความอบอุ่นใจ -->
+        <!-- ซองจดหมายสัญญารัก 4 ประเด็นสำคัญ -->
         <div class="letters-container">
-            <div class="envelope" onclick="openEnvelope(this, '🌸 ถึงป่วยตัวห่างแต่ส่งพลังความห่วงใยไปคอยห่มผ้า และดูแลน้องกัสตลอดเวลานะครับ')">
+            <!-- ซองที่ 1: ให้กำลังใจ -->
+            <div class="envelope" onclick="openEnvelope(this, '🌸 สู้ๆ นะคะเจ้าเด็กของพี่! กินยา ทานอาหารเยอะๆ พักผ่อนให้เต็มที่ พี่ส่งกำลังใจดวงโตๆ ไปกอดแน่นๆ น้าคนเก่ง')">
                 <i class="fa-solid fa-heart heart-stamp"></i>
                 <div class="envelope-content"></div>
             </div>
-            <div class="envelope" onclick="openEnvelope(this, '🐱 ไม่ว่าจะวันไหนที่น้องกัสเหนื่อยหรืออ่อนแอ พี่ปลาดุกคนนี้จะคอยอยู่เคียงข้างเสมอ สู้ไปด้วยกันนะ')">
+            <!-- ซองที่ 2: จะคอยอยู่เคียงข้าง -->
+            <div class="envelope" onclick="openEnvelope(this, '🐱 พี่จะคอยอยู่เคียงข้างเจ้าเด็กเสมอเลย ไม่ว่าจะตอนไหน ถ้าหันมาเมื่อไหร่ก็เจอพี่ตรงนี้แน่นอนค่ะ')">
                 <i class="fa-solid fa-heart heart-stamp"></i>
                 <div class="envelope-content"></div>
             </div>
-            <div class="envelope" onclick="openEnvelope(this, '🌈 เพี้ยงง! ขอให้ไข้หวัดและความเจ็บไข้ปลิวฟิ้วหายไปในพริบตา กลับมาสว่างสดใสไวๆ น้าคนดี')">
+            <!-- ซองที่ 3: จะมากวนใจทุกวัน -->
+            <div class="envelope" onclick="openEnvelope(this, '🌈 รีบหายไวๆ นะ! พี่จะคอยทักไปกวนใจ แกล้งหยอกให้ยิ้มได้ในทุกๆ วัน ไม่มีเบื่อเลยล่ะยัยตัวแสบ')">
                 <i class="fa-solid fa-heart heart-stamp"></i>
                 <div class="envelope-content"></div>
             </div>
-            <div class="envelope" onclick="openEnvelope(this, '🧸 ส่งอ้อมกอดอุ่นๆ และความรักเต็มกระสอบไปชาร์จพลังกายใจให้น้องกัสชื่นมื่นครับ')">
+            <!-- ซองที่ 4: จะไม่หายไปไหน -->
+            <div class="envelope" onclick="openEnvelope(this, '🧸 สัญญาเลยว่าจะไม่หายไปไหนแน่นอน จะคอยอยู่ซัพพอร์ต คอยเป็นเซฟโซน และมอบพลังบวกให้เจ้าเด็กตรงนี้ตลอดไป')">
                 <i class="fa-solid fa-heart heart-stamp"></i>
                 <div class="envelope-content"></div>
             </div>
         </div>
 
-        <!-- ปุ่มบูสต์วิเศษสร้างประกายหัวใจพุ่งทั่วจอ -->
+        <!-- ปุ่มเวทมนตร์ส่งหัวใจหนาแน่นจุใจ -->
         <button class="action-btn" onclick="spawnLoveBoost(event)">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> ส่งแรงใจดุ๊กดิ๊กโอบกอดน้องกัส ✨💖
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ส่งแรงใจดุ๊กดิ๊กโอบกอดเจ้าเด็ก ✨💖
         </button>
 
         <div class="footer-credit">
-            Created with <i class="fa-solid fa-heart"></i> by พี่ปลาดุก (อยู่เคียงข้างน้องกัสเสมอ)
+            Created with <i class="fa-solid fa-heart"></i> by พี่ (คอยอยู่เคียงข้างเจ้าเด็กเสมอ)
         </div>
 
     </div>
 
-    <!-- ป๊อปอัพแกลเลอรีรูปขยายใหญ่เสมือนจริง -->
+    <!-- ป๊อปอัพแกลเลอรีรูปขยายใหญ่ -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
         <img id="lightbox-img" class="lightbox-img" src="" alt="ภาพขยาย">
@@ -781,7 +796,7 @@
     </div>
 
     <script>
-        // ระบบเปลี่ยนภาพอวาตาร์หลักของน้องกัสวนไป 3 แบบเพื่อความบันเทิงและสร้างรอยยิ้ม
+        // รายการรูปภาพเจ้าเด็กที่จะสลับวนในกรอบอวาตาร์หลัก
         const gusAvatars = [
             'Screenshot 2026-06-24 082025.jpg',
             'Screenshot 2026-06-24 082000.jpg',
@@ -795,29 +810,25 @@
             const img = document.getElementById('receiver-img');
             img.src = gusAvatars[gusAvatarIdx];
             
-            // ปล่อยหัวใจลอยขึ้นเมื่อสลับหน้าอวาตาร์น้องกัส
+            // ปล่อยหัวใจลอยพุ่งเมื่อจิ้มหน้าเจ้าเด็ก
             for (let i = 0; i < 4; i++) {
                 createParticle(window.innerWidth / 2 + 100, window.innerHeight / 2, '💖');
             }
         }
 
-        // ตัวสำรองรูปกรณีพี่ปลาดุกภาพแตก
+        // ตัวสำรองกรณีรูปภาพพี่เสีย
         function handleSenderError() {
-            const img = document.getElementById('sender-img');
-            const fallback = document.getElementById('sender-fallback');
-            img.style.display = 'none';
-            fallback.style.display = 'flex';
+            document.getElementById('sender-img').style.display = 'none';
+            document.getElementById('sender-fallback').style.display = 'flex';
         }
 
-        // ตัวสำรองรูปกรณีน้องกัสภาพแตก
+        // ตัวสำรองกรณีรูปภาพเจ้าเด็กเสีย
         function handleReceiverError() {
-            const img = document.getElementById('receiver-img');
-            const fallback = document.getElementById('receiver-fallback');
-            img.style.display = 'none';
-            fallback.style.display = 'flex';
+            document.getElementById('receiver-img').style.display = 'none';
+            document.getElementById('receiver-fallback').style.display = 'flex';
         }
 
-        // ขยายรูปแกลเลอรีโพลาลอยด์ใหญ่เต็มตา
+        // ระบบขยายรูปสไตล์ Lightbox
         function openLightbox(imgSrc, captionText) {
             playLetterSound();
             const lightbox = document.getElementById('lightbox');
@@ -830,45 +841,43 @@
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+            document.getElementById('lightbox').classList.remove('active');
         }
 
-        // สถานะระดับพลังกายใจสะสม
+        // แถบสะสมระดับพลังกายใจ
         let currentHappiness = 40;
         const happinessBar = document.getElementById('happiness-bar');
         const barLabel = document.getElementById('bar-label');
 
         function updateHappinessUI() {
             happinessBar.style.width = currentHappiness + '%';
-            barLabel.textContent = `พลังรักเยียวยาใจน้องกัส: ${currentHappiness}%`;
+            barLabel.textContent = `พลังรักเยียวยาใจเจ้าเด็ก: ${currentHappiness}%`;
 
             if(currentHappiness >= 100) {
-                barLabel.textContent = "น้องกัสได้รับพลังใจ 100% ล้นปรี่อยู่เคียงข้างกันนะ! 🎉";
+                barLabel.textContent = "เจ้าเด็กได้รับพลังใจ 100% ล้นปรี่อยู่เคียงข้างกันนะ! 🎉";
                 barLabel.style.color = '#fff';
                 barLabel.style.textShadow = '1px 1px 3px rgba(0,0,0,0.4)';
             }
         }
         updateHappinessUI();
 
-        // ฟังก์ชันบวกพลังกายใจเมื่อกดเล่นไอเทมต่างๆ
+        // ฟังก์ชันคำนวณบวกคะแนนความสุข
         function addHappiness(amount, emoji) {
             playPopSound();
             if(currentHappiness < 100) {
                 currentHappiness = Math.min(100, currentHappiness + amount);
                 updateHappinessUI();
                 
-                // สปอว์นไอคอนลอยกระจายรอบการ์ดโปรไฟล์
-                for (let i = 0; i < 4; i++) {
+                // สปอว์นไอคอนลอยเบ่งบาน
+                for (let i = 0; i < 8; i++) {
                     createParticle(window.innerWidth / 2 + (Math.random() * 80 - 40), window.innerHeight / 2 - 40, emoji);
                 }
             } else {
-                // หากเกจสะสมพลังเต็มแล้ว ยิ่งกดจะยิ่งปล่อยอนุภาคเวทมนตร์กระจายตัวหนาแน่นเป็นพิเศษ
                 spawnLoveBoost({clientX: window.innerWidth / 2, clientY: window.innerHeight / 2});
             }
         }
 
-        // ระบบคลิกสไลด์เปิดซองจดหมายแสนห่วงใย
+        // ระบบคลิกสไลด์เปิดจดหมายลับ
         function openEnvelope(element, text) {
             if (!element.classList.contains('opened')) {
                 playLetterSound();
@@ -877,14 +886,14 @@
                 contentDiv.innerHTML = `<span style="animation: fadeIn 0.5s; display: block;">${text}</span>`;
                 contentDiv.style.display = 'block';
                 
-                // สปอว์นกลุ่มดาวประกายสดใสรอบบริเวณซองจดหมาย
-                for (let i = 0; i < 5; i++) {
+                // ปล่อยหัวใจพุ่งกระจายรอบจดหมาย
+                for (let i = 0; i < 6; i++) {
                     createParticle(element.getBoundingClientRect().left + 40, element.getBoundingClientRect().top + 20, '✨');
                 }
             }
         }
 
-        // ฟังก์ชันสร้างและแอนิเมทอนุภาคพริ้วไหว
+        // ฟังก์ชันสร้างและจัดเรียงอนุภาคลอยละล่อง
         function createParticle(x, y, char) {
             const particle = document.createElement('div');
             particle.className = 'particle';
@@ -901,25 +910,26 @@
             
             setTimeout(() => {
                 particle.remove();
-            }, 1500);
+            }, 1400);
         }
 
-        // คทาวิเศษกระจายความรักฟุ้งกระจายหน้าจอ
+        // คทาเวทมนตร์ส่งกลุ่มดาวหัวใจรัวสะใจจุใจ (หัวใจเยอะๆ!)
         function spawnLoveBoost(event) {
             playWandSound();
-            const emojis = ['💖', '🐰', '🌈', '🍭', '🌸', '✨', '🩹', '🧸', '💝', '🤝'];
+            const emojis = ['💖', '❤️', '💕', '💝', '💘', '💓', '💗', '🐰', '✨', '🌸'];
             const startX = event.clientX || window.innerWidth / 2;
             const startY = event.clientY || window.innerHeight / 2;
 
-            for (let i = 0; i < 15; i++) {
+            // บลูสระเบิด 40 ดวงรวดสะใจเลยครับ!
+            for (let i = 0; i < 40; i++) {
                 setTimeout(() => {
                     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-                    createParticle(startX, startY, randomEmoji);
-                }, i * 45);
+                    createParticle(startX + (Math.random() * 40 - 20), startY + (Math.random() * 40 - 20), randomEmoji);
+                }, i * 20);
             }
         }
 
-        // ระบบสร้างและปล่อยคลื่นเสียงสังเคราะห์สุดคิ้วท์ (ไม่ต้องง้อไฟล์นอก)
+        // ระบบเสียงสังเคราะห์เพื่อผ่อนคลาย (Web Audio API)
         let audioCtx = null;
         let isLullabyPlaying = false;
         let melodyInterval = null;
@@ -939,9 +949,9 @@
                 
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(450, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.12);
+                osc.frequency.exponentialRampToValueAtTime(1100, ctx.currentTime + 0.12);
                 
-                gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.12);
                 
                 osc.connect(gain);
@@ -956,7 +966,7 @@
             try {
                 const ctx = getAudioContext();
                 const now = ctx.currentTime;
-                const freqs = [523.25, 659.25, 783.99, 1046.50]; // Chord C Major สดใสเบิกบาน
+                const freqs = [523.25, 659.25, 783.99, 1046.50]; // Chord C Major แสนสุขสบาย
                 
                 freqs.forEach((f, i) => {
                     const osc = ctx.createOscillator();
@@ -987,7 +997,7 @@
                 osc.frequency.setValueAtTime(350, ctx.currentTime);
                 osc.frequency.linearRampToValueAtTime(700, ctx.currentTime + 0.18);
                 
-                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.setValueAtTime(0.06, ctx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.18);
                 
                 osc.connect(gain);
@@ -998,9 +1008,9 @@
             } catch (e) {}
         }
 
-        // เพลงบำบัดกล่อมเกลาผ่อนคลาย (Lullaby Music Synth)
-        const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // สเกล C เมเจอร์แสนใสสะอาด
-        const softMelody = [0, 2, 4, 2, 5, 4, 2, 0]; // ทำนองกล่อมเด็กชวนเคลิ้มสบาย
+        // เสียงกระดิ่งเพลงกล่อมเด็ก (Lullaby Music Synth)
+        const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
+        const softMelody = [0, 2, 4, 2, 5, 4, 2, 0];
 
         function toggleLullaby() {
             const btn = document.querySelector('.music-btn');
@@ -1026,24 +1036,40 @@
                         osc.type = 'sine';
                         osc.frequency.setValueAtTime(noteFreq, now);
                         
-                        gain.gain.setValueAtTime(0.07, now);
-                        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
+                        gain.gain.setValueAtTime(0.05, now);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
                         
                         osc.connect(gain);
                         gain.connect(ctx.destination);
                         
                         osc.start();
-                        osc.stop(now + 0.75);
+                        osc.stop(now + 0.8);
                         step++;
                     } catch (e) {}
                 }, 850);
             }
         }
+
+        // ระบบสร้างหัวใจลอยในพื้นหลังอัตโนมัติอย่างเงียบๆ
+        const starsContainer = document.getElementById('stars-container');
+        const heartEmojis = ['💖', '💗', '💕', '❤️', '💝'];
+        
+        function spawnBackgroundHeart() {
+            if (document.hidden) return;
+            const heart = document.createElement('div');
+            heart.className = 'sparkle-heart';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 7) + 's';
+            
+            starsContainer.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        // ปล่อยหัวใจลอยในพื้นหลังเรื่อยๆ ทุกๆ 1.5 วินาที
+        setInterval(spawnBackgroundHeart, 1500);
     </script>
 </body>
 </html>
-```
-eof
-
----
-
