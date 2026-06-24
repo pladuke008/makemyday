@@ -101,6 +101,31 @@
             100% { transform: translateY(-110vh) scale(1.4) rotate(360deg); opacity: 0; }
         }
 
+        /* เอฟเฟกต์รูปภาพเจ้าเด็กลอยฟ้าสุดคิ้วท์ */
+        .floating-image-bubble {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            bottom: -80px;
+            z-index: 2;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.35);
+            background-color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: floatUpImage 12s infinite linear;
+        }
+
+        @keyframes floatUpImage {
+            0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-115vh) scale(1.2) rotate(var(--spin-degree, 360deg)); opacity: 0; }
+        }
+
         /* การ์ดแก้วบำบัดหัวใจ */
         .healing-card {
             background: rgba(255, 255, 255, 0.94);
@@ -219,7 +244,7 @@
             border: 1px solid var(--primary-cute-lavender);
         }
 
-        /* สายใยหัวใจเต้นตรงกลาง */
+        /* สายใยด้ายแดงและหัวใจตรงกลาง */
         .connection-bridge {
             display: flex;
             flex-direction: column;
@@ -302,7 +327,6 @@
             position: relative;
         }
 
-        /* แผ่นเทปใสแปะขอบรูปเก๋ๆ */
         .polaroid-card::before {
             content: '';
             position: absolute;
@@ -352,7 +376,7 @@
             text-align: center;
         }
 
-        /* เกจสะสมเกราะพลังงานหัวใจ */
+        /* แถบวัดสะสมเกราะพลังงานความรัก */
         .happiness-container {
             background: #fff;
             border: 3px solid var(--primary-cute-lavender);
@@ -410,7 +434,7 @@
             width: 100%;
         }
 
-        /* ไอเทมกดส่งพลังรักกุ๊กกิ๊ก */
+        /* ไอเทมอาหารใจวิเศษ */
         .items-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -456,7 +480,7 @@
             display: block;
         }
 
-        /* โซนเปิดซองจดหมายสัญญารัก 4 หัวข้อสำคัญ */
+        /* จดหมายสัญญารัก */
         .letters-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -510,7 +534,7 @@
             transform: scale(0);
         }
 
-        /* ปุ่มแผ่พลังสะบัดหัวใจดุ๊กดิ๊ก */
+        /* ปุ่มกระจายพลังใจ */
         .action-btn {
             background: linear-gradient(135deg, var(--primary-cute-pink) 0%, #ff5c8a 100%);
             color: white;
@@ -534,7 +558,7 @@
             box-shadow: 0 6px 16px rgba(255, 92, 138, 0.35);
         }
 
-        /* สวิตช์ปิดเปิดเพลงกล่อมบำบัดประสาทสัมผัส */
+        /* ปุ่มเพลงบำบัดกล่อมสมอง */
         .music-btn {
             position: absolute;
             top: 15px;
@@ -559,7 +583,6 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* หัวใจอนุภาคเวลากด */
         .particle {
             position: absolute;
             pointer-events: none;
@@ -574,7 +597,7 @@
             100% { transform: translateY(-150px) translateX(var(--x-offset)) scale(1.5) rotate(var(--rot-offset)); opacity: 0; }
         }
 
-        /* โมดอลขยายรูปเต็มหน้าจอ */
+        /* ป๊อปอัพแกลเลอรีรูปขยายใหญ่ */
         .lightbox {
             display: none;
             position: fixed;
@@ -653,8 +676,8 @@
 </head>
 <body>
 
-    <!-- ระบบหัวใจลอยในพื้นหลัง -->
-    <div id="stars-container"></div>
+    <!-- ระบบหัวใจและรูปภาพเจ้าเด็กลอยฟ้ารอบๆ พื้นหลัง -->
+    <div id="stars-container" class="absolute inset-0 overflow-hidden pointer-events-none z-1"></div>
 
     <div class="healing-card">
         
@@ -695,7 +718,7 @@
             <!-- ฝั่งเจ้าเด็ก -->
             <div class="avatar-box">
                 <div class="avatar-frame" onclick="cycleGusAvatar()" title="คลิกสลับรูปเจ้าเด็ก">
-                    <img id="receiver-img" src="gus3.jpg" alt="เจ้าเด็ก" onerror="handleReceiverError()">
+                    <img id="receiver-img" src="" alt="เจ้าเด็ก" onerror="handleReceiverError()">
                     <div id="receiver-fallback" class="fallback-icon" style="display:none;">
                         <i class="fa-solid fa-face-smile-wink"></i>
                     </div>
@@ -713,14 +736,14 @@
                 <!-- โพลาลอยด์ใบที่ 1 (รูปนั่งเล่นข้างนอก ยิ้มหวาน) -->
                 <div class="polaroid-card polaroid-1" onclick="openLightbox(document.getElementById('polaroid-img-1').src, 'คนเก่งยิ้มสวยที่สุดของพี่เลยนะ 🧸')">
                     <div class="polaroid-frame">
-                        <img id="polaroid-img-1" src="gus4.jpg" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
+                        <img id="polaroid-img-1" src="" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
                     </div>
                     <div class="polaroid-caption">คนเก่งของพี่ 🧸</div>
                 </div>
                 <!-- โพลาลอยด์ใบที่ 2 (รูปคอลลาจเซลฟี่ 6 ช่อง) -->
                 <div class="polaroid-card polaroid-2" onclick="openLightbox(document.getElementById('polaroid-img-2').src, 'เจ้าเด็กดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
                     <div class="polaroid-frame">
-                        <img id="polaroid-img-2" src="gus2.jpg" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
+                        <img id="polaroid-img-2" src="" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
                     </div>
                     <div class="polaroid-caption">เจ้าเด็กแสนน่ารัก 🐰</div>
                 </div>
@@ -796,15 +819,22 @@
     </div>
 
     <script>
-        // รายการไฟล์ภาพอวาตาร์หลักของเจ้าเด็กแบบหมุนวน (สไลด์หลักแบบง่ายๆ ภาษาไทย)
+        
+        // รันคำสั่งแปลงชื่อไฟล์ภาษาไทยเป็นรหัสสากล (Percent-Encoding) ทันทีที่เปิดหน้าจอ 
+        // ช่วยกู้ชีพรูปภาพภาษาไทยไม่ให้แตกบน GitHub Pages ได้ 100% ครับ
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('receiver-img').src = encodeURIComponent('เจ้าเด็ก3.jpg');
+            document.getElementById('polaroid-img-1').src = encodeURIComponent('เจ้าเด็ก4.jpg');
+            document.getElementById('polaroid-img-2').src = encodeURIComponent('เจ้าเด็ก2.jpg');
+        });
+
+        // รายการไฟล์ภาพอวาตาร์หลักของเจ้าเด็กแบบหมุนวน (สไลด์หลักแบบง่ายๆ)
         const receiverFallbacks = [
             'เจ้าเด็ก3.jpg',
             'เจ้าเด็ก3.png',
             'เจ้าเด็ก3.jpeg',
             'เจ้าเด็ก3.JPG',
-            'เจ้าเด็ก3.PNG',
-            'Screenshot%202026-06-24%20082025.jpg',
-            'Screenshot 2026-06-24 082025.jpg'
+            'เจ้าเด็ก3.PNG'
         ];
         let receiverFallbackIdx = 0;
 
@@ -812,7 +842,7 @@
             const img = document.getElementById('receiver-img');
             if (receiverFallbackIdx < receiverFallbacks.length - 1) {
                 receiverFallbackIdx++;
-                img.src = receiverFallbacks[receiverFallbackIdx];
+                img.src = encodeURIComponent(receiverFallbacks[receiverFallbackIdx]);
             } else {
                 img.style.display = 'none';
                 document.getElementById('receiver-fallback').style.display = 'flex';
@@ -825,16 +855,14 @@
             'เจ้าเด็ก4.png',
             'เจ้าเด็ก4.jpeg',
             'เจ้าเด็ก4.JPG',
-            'เจ้าเด็ก4.PNG',
-            'Screenshot%202026-06-24%20082000.jpg',
-            'Screenshot 2026-06-24 082000.jpg'
+            'เจ้าเด็ก4.PNG'
         ];
         let polaroid1Idx = 0;
 
         function handlePolaroid1Error(img) {
             if (polaroid1Idx < polaroid1Fallbacks.length - 1) {
                 polaroid1Idx++;
-                img.src = polaroid1Fallbacks[polaroid1Idx];
+                img.src = encodeURIComponent(polaroid1Fallbacks[polaroid1Idx]);
             } else {
                 img.src = 'https://placehold.co/200x250/ffe5ec/4a47a3?text=Gus+1';
             }
@@ -846,22 +874,19 @@
             'เจ้าเด็ก2.png',
             'เจ้าเด็ก2.jpeg',
             'เจ้าเด็ก2.JPG',
-            'เจ้าเด็ก2.PNG',
-            'Screenshot%202026-06-24%20082108.jpg',
-            'Screenshot 2026-06-24 082108.jpg'
+            'เจ้าเด็ก2.PNG'
         ];
         let polaroid2Idx = 0;
 
         function handlePolaroid2Error(img) {
             if (polaroid2Idx < polaroid2Fallbacks.length - 1) {
                 polaroid2Idx++;
-                img.src = polaroid2Fallbacks[polaroid2Idx];
+                img.src = encodeURIComponent(polaroid2Fallbacks[polaroid2Idx]);
             } else {
                 img.src = 'https://placehold.co/200x250/e8f0fe/4a47a3?text=Gus+2';
             }
         }
 
-        // ระบบสลับเปลี่ยนภาพอวาตาร์ไปมาเมื่อคลิก
         let gusAvatarIdx = 0;
         function cycleGusAvatar() {
             playPopSound();
@@ -870,11 +895,11 @@
             receiverFallbackIdx = 0; // รีเซ็ตการเช็กภาพเสีย
             
             if (gusAvatarIdx === 0) {
-                img.src = 'เจ้าเด็ก3.jpg';
+                img.src = encodeURIComponent('เจ้าเด็ก3.jpg');
             } else if (gusAvatarIdx === 1) {
-                img.src = 'เจ้าเด็ก4.jpg';
+                img.src = encodeURIComponent('เจ้าเด็ก4.jpg');
             } else {
-                img.src = 'เจ้าเด็ก2.jpg';
+                img.src = encodeURIComponent('เจ้าเด็ก2.jpg');
             }
             
             for (let i = 0; i < 4; i++) {
@@ -888,6 +913,7 @@
             document.getElementById('sender-fallback').style.display = 'flex';
         }
 
+        
         // ระบบขยายรูปสไตล์ Lightbox
         function openLightbox(imgSrc, captionText) {
             playLetterSound();
@@ -921,7 +947,6 @@
         }
         updateHappinessUI();
 
-        // ฟังก์ชันคำนวณบวกคะแนนความสุข
         function addHappiness(amount, emoji) {
             playPopSound();
             if(currentHappiness < 100) {
@@ -937,7 +962,7 @@
             }
         }
 
-        // ระบบคลิกสไลด์เปิดจดหมายลับ
+        
         function openEnvelope(element, text) {
             if (!element.classList.contains('opened')) {
                 playLetterSound();
@@ -953,7 +978,6 @@
             }
         }
 
-        // ฟังก์ชันสร้างและจัดเรียงอนุภาคลอยละล่อง
         function createParticle(x, y, char) {
             const particle = document.createElement('div');
             particle.className = 'particle';
@@ -973,14 +997,12 @@
             }, 1400);
         }
 
-        // คทาเวทมนตร์ส่งกลุ่มดาวหัวใจรัวสะใจจุใจ (หัวใจเยอะๆ!)
         function spawnLoveBoost(event) {
             playWandSound();
             const emojis = ['💖', '❤️', '💕', '💝', '💘', '💓', '💗', '🐰', '✨', '🌸'];
             const startX = event.clientX || window.innerWidth / 2;
             const startY = event.clientY || window.innerHeight / 2;
 
-            // บลูสระเบิด 40 ดวงรัวสะใจเลยครับ!
             for (let i = 0; i < 40; i++) {
                 setTimeout(() => {
                     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
@@ -989,7 +1011,7 @@
             }
         }
 
-        // ระบบเสียงสังเคราะห์เพื่อผ่อนคลาย (Web Audio API)
+        
         let audioCtx = null;
         let isLullabyPlaying = false;
         let melodyInterval = null;
@@ -1026,7 +1048,7 @@
             try {
                 const ctx = getAudioContext();
                 const now = ctx.currentTime;
-                const freqs = [523.25, 659.25, 783.99, 1046.50]; // Chord C Major แสนสุขสบาย
+                const freqs = [523.25, 659.25, 783.99, 1046.50];
                 
                 freqs.forEach((f, i) => {
                     const osc = ctx.createOscillator();
@@ -1068,7 +1090,6 @@
             } catch (e) {}
         }
 
-        // เสียงกระดิ่งเพลงกล่อมเด็ก (Lullaby Music Synth)
         const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
         const softMelody = [0, 2, 4, 2, 5, 4, 2, 0];
 
@@ -1110,7 +1131,7 @@
             }
         }
 
-        // ระบบสร้างหัวใจลอยในพื้นหลังอัตโนมัติอย่างเงียบๆ
+        
         const starsContainer = document.getElementById('stars-container');
         const heartEmojis = ['💖', '💗', '💕', '❤️', '💝'];
         
@@ -1128,8 +1149,65 @@
             }, 10000);
         }
 
-        // ปล่อยหัวใจลอยในพื้นหลังเรื่อยๆ ทุกๆ 1.5 วินาที
-        setInterval(spawnBackgroundHeart, 1500);
+        // อัลบั้มรูปเจ้าเด็กที่จะสุ่มเรียกลอยฟ้า
+        const gusFloatingPool = [
+            'เจ้าเด็ก2.jpg',
+            'เจ้าเด็ก3.jpg',
+            'เจ้าเด็ก4.jpg'
+        ];
+
+        function spawnFloatingGusBubble() {
+            if (document.hidden) return;
+            
+            // สร้างกระดองครอบรูปวงกลม
+            const bubble = document.createElement('div');
+            bubble.className = 'floating-image-bubble';
+            
+            // สุ่มรูปภาพเจ้าเด็ก
+            const chosenImgName = gusFloatingPool[Math.floor(Math.random() * gusFloatingPool.length)];
+            
+            // สร้างแท็กภาพ img ไว้ข้างใน
+            const img = document.createElement('img');
+            img.src = encodeURIComponent(chosenImgName);
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.alt = 'Gus Floating';
+            
+            // ป้องกันรูปแตกด้วยอิมเมจสำรอง
+            img.onerror = function() {
+                this.src = 'https://placehold.co/100x100/ffe5ec/4a47a3?text=Gus';
+            };
+            
+            bubble.appendChild(img);
+            
+            // สุ่มขนาด (ขนาดกำลังน่ารัก 50px - 75px)
+            const randomSize = Math.floor(Math.random() * 25) + 50;
+            bubble.style.width = randomSize + 'px';
+            bubble.style.height = randomSize + 'px';
+            
+            // สุ่มตำแหน่งซ้ายขวา และทิศทางมุมองศาการหมุนควง
+            bubble.style.left = (Math.random() * 88) + 'vw';
+            
+            const spinDir = Math.random() > 0.5 ? 360 : -360;
+            bubble.style.setProperty('--spin-degree', spinDir + 'deg');
+            
+            // สุ่มระยะเวลาการลอย (7 - 12 วินาที)
+            const randomDuration = (Math.random() * 5) + 7;
+            bubble.style.animationDuration = randomDuration + 's';
+            
+            starsContainer.appendChild(bubble);
+            
+            // ลบทิ้งเมื่อหมดแอนิเมชันลอยพ้นจอ
+            setTimeout(() => {
+                bubble.remove();
+            }, randomDuration * 1000);
+        }
+
+        // ตั้งเวลาการปล่อยความมุ้งมิ้งรอบหลังคาห้อง
+        setInterval(spawnBackgroundHeart, 1500);       // ปล่อยหัวใจลอยเรื่อยๆ ทุก 1.5 วินาที
+        setInterval(spawnFloatingGusBubble, 4000);     // ปล่อยรูปเจ้าเด็กลอยฟรุ้งฟริ้งเรื่อยๆ ทุก 4 วินาที
     </script>
 </body>
 </html>
+```
