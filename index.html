@@ -695,7 +695,7 @@
             <!-- ฝั่งเจ้าเด็ก -->
             <div class="avatar-box">
                 <div class="avatar-frame" onclick="cycleGusAvatar()" title="คลิกสลับรูปเจ้าเด็ก">
-                    <img id="receiver-img" src="Screenshot 2026-06-24 082025.jpg" alt="เจ้าเด็ก" onerror="handleReceiverError()">
+                    <img id="receiver-img" src="เจ้าเด็ก3.jpg" alt="เจ้าเด็ก" onerror="handleReceiverError()">
                     <div id="receiver-fallback" class="fallback-icon" style="display:none;">
                         <i class="fa-solid fa-face-smile-wink"></i>
                     </div>
@@ -710,17 +710,17 @@
                 <i class="fa-solid fa-images"></i> อัลบั้มรอยยิ้มแสนหวานของเจ้าเด็ก ✨
             </div>
             <div class="polaroid-grid">
-                <!-- โพลาลอยด์ใบที่ 1 -->
+                <!-- โพลาลอยด์ใบที่ 1 (รูปนั่งเล่นข้างนอก ยิ้มหวาน) -->
                 <div class="polaroid-card polaroid-1" onclick="openLightbox(document.getElementById('polaroid-img-1').src, 'คนเก่งยิ้มสวยที่สุดของพี่เลยนะ 🧸')">
                     <div class="polaroid-frame">
-                        <img id="polaroid-img-1" src="Screenshot 2026-06-24 082000.jpg" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
+                        <img id="polaroid-img-1" src="เจ้าเด็ก4.jpg" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
                     </div>
                     <div class="polaroid-caption">คนเก่งของพี่ 🧸</div>
                 </div>
-                <!-- โพลาลอยด์ใบที่ 2 -->
+                <!-- โพลาลอยด์ใบที่ 2 (รูปคอลลาจเซลฟี่ 6 ช่อง) -->
                 <div class="polaroid-card polaroid-2" onclick="openLightbox(document.getElementById('polaroid-img-2').src, 'เจ้าเด็กดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
                     <div class="polaroid-frame">
-                        <img id="polaroid-img-2" src="Screenshot 2026-06-24 082108.jpg" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
+                        <img id="polaroid-img-2" src="เจ้าเด็ก2.jpg" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
                     </div>
                     <div class="polaroid-caption">เจ้าเด็กแสนน่ารัก 🐰</div>
                 </div>
@@ -796,15 +796,15 @@
     </div>
 
     <script>
-        // รายการรูปภาพอวาตาร์หลักของเจ้าเด็กแบบ Fallback เผื่ออัปโหลดเป็นสกุลอื่น
+        // รายการไฟล์ภาพอวาตาร์หลักของเจ้าเด็กแบบหมุนวน (สไลด์หลักแบบง่ายๆ ภาษาไทย)
         const receiverFallbacks = [
-            'Screenshot 2026-06-24 082025.jpg',
-            'Screenshot 2026-06-24 082025.png',
-            'Screenshot 2026-06-24 082025.JPG',
-            'Screenshot 2026-06-24 082025.PNG',
-            'Screenshot 2026-06-24 082025.jpeg',
+            'เจ้าเด็ก3.jpg',
+            'เจ้าเด็ก3.png',
+            'เจ้าเด็ก3.jpeg',
+            'เจ้าเด็ก3.JPG',
+            'เจ้าเด็ก3.PNG',
             'Screenshot%202026-06-24%20082025.jpg',
-            'Screenshot%202026-06-24%20082025.png'
+            'Screenshot 2026-06-24 082025.jpg'
         ];
         let receiverFallbackIdx = 0;
 
@@ -819,15 +819,15 @@
             }
         }
 
-        // ระบบ Fallback ของภาพโพลาลอยด์ 1
+        // ระบบสำรองของภาพโพลาลอยด์ 1 (เจ้าเด็ก4.jpg)
         const polaroid1Fallbacks = [
-            'Screenshot 2026-06-24 082000.jpg',
-            'Screenshot 2026-06-24 082000.png',
-            'Screenshot 2026-06-24 082000.JPG',
-            'Screenshot 2026-06-24 082000.PNG',
-            'Screenshot 2026-06-24 082000.jpeg',
+            'เจ้าเด็ก4.jpg',
+            'เจ้าเด็ก4.png',
+            'เจ้าเด็ก4.jpeg',
+            'เจ้าเด็ก4.JPG',
+            'เจ้าเด็ก4.PNG',
             'Screenshot%202026-06-24%20082000.jpg',
-            'Screenshot%202026-06-24%20082000.png'
+            'Screenshot 2026-06-24 082000.jpg'
         ];
         let polaroid1Idx = 0;
 
@@ -840,15 +840,15 @@
             }
         }
 
-        // ระบบ Fallback ของภาพโพลาลอยด์ 2
+        // ระบบสำรองของภาพโพลาลอยด์ 2 (เจ้าเด็ก2.jpg)
         const polaroid2Fallbacks = [
-            'Screenshot 2026-06-24 082108.jpg',
-            'Screenshot 2026-06-24 082108.png',
-            'Screenshot 2026-06-24 082108.JPG',
-            'Screenshot 2026-06-24 082108.PNG',
-            'Screenshot 2026-06-24 082108.jpeg',
+            'เจ้าเด็ก2.jpg',
+            'เจ้าเด็ก2.png',
+            'เจ้าเด็ก2.jpeg',
+            'เจ้าเด็ก2.JPG',
+            'เจ้าเด็ก2.PNG',
             'Screenshot%202026-06-24%20082108.jpg',
-            'Screenshot%202026-06-24%20082108.png'
+            'Screenshot 2026-06-24 082108.jpg'
         ];
         let polaroid2Idx = 0;
 
@@ -861,23 +861,20 @@
             }
         }
 
-        // ระบบสลับเปลี่ยนภาพอวาตาร์ไปมา
+        // ระบบสลับเปลี่ยนภาพอวาตาร์ไปมาเมื่อคลิก
         let gusAvatarIdx = 0;
         function cycleGusAvatar() {
             playPopSound();
             gusAvatarIdx = (gusAvatarIdx + 1) % 3;
             const img = document.getElementById('receiver-img');
+            receiverFallbackIdx = 0; // รีเซ็ตการเช็กภาพเสีย
             
-            // กำหนดภาพหลักตามลำดับและเปิดระบบ Fallback ของรอบนั้นๆ ใหม่
             if (gusAvatarIdx === 0) {
-                img.src = 'Screenshot 2026-06-24 082025.jpg';
-                receiverFallbackIdx = 0;
+                img.src = 'เจ้าเด็ก3.jpg';
             } else if (gusAvatarIdx === 1) {
-                img.src = 'Screenshot 2026-06-24 082000.jpg';
-                receiverFallbackIdx = 1; // เริ่มค้นหาจาก png โลด
+                img.src = 'เจ้าเด็ก4.jpg';
             } else {
-                img.src = 'Screenshot 2026-06-24 082108.jpg';
-                receiverFallbackIdx = 1;
+                img.src = 'เจ้าเด็ก2.jpg';
             }
             
             for (let i = 0; i < 4; i++) {
@@ -983,7 +980,7 @@
             const startX = event.clientX || window.innerWidth / 2;
             const startY = event.clientY || window.innerHeight / 2;
 
-            // บลูสระเบิด 40 ดวงรวดสะใจเลยครับ!
+            // บลูสระเบิด 40 ดวงรัวสะใจเลยครับ!
             for (let i = 0; i < 40; i++) {
                 setTimeout(() => {
                     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
@@ -1136,4 +1133,3 @@
     </script>
 </body>
 </html>
-```
