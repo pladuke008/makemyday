@@ -819,29 +819,29 @@
     </div>
 
     <script>
-        
+        // ชุดรูปภาพของเจ้าเด็กที่เชื่อมโยงกัน (รอบนี้รองรับทั้งชื่อภาษาอังกฤษและชื่อภาษาไทยในคอมเพื่อความชัวร์ 100%)
+        const avatarSources = [
+            ['gus3.jpg', 'gus3.png', 'gus3.jpeg', 'เจ้าเด็ก3.jpg', 'เจ้าเด็ก3.png', 'เจ้าเด็ก3.jpeg', '%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%813.jpg'],
+            ['gus4.jpg', 'gus4.png', 'gus4.jpeg', 'เจ้าเด็ก4.jpg', 'เจ้าเด็ก4.png', 'เจ้าเด็ก4.jpeg', '%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%814.jpg'],
+            ['gus2.jpg', 'gus2.png', 'gus2.jpeg', 'เจ้าเด็ก2.jpg', 'เจ้าเด็ก2.png', 'เจ้าเด็ก2.jpeg', '%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%812.jpg']
+        ];
+        let currentAvatarGroupIdx = 0; // สลับอภิสิทธิ์วนระหว่างภาพหลัก 3 ภาพ
+        let currentAvatarFallbackIdx = 0; // ลำดับภาพเสียเมื่อหาไม่เจอ
+
         // รันคำสั่งผูกรูปภาพสากลภาษาอังกฤษทันทีที่หน้าเว็บโหลดเสร็จสมบูรณ์
         window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('receiver-img').src = 'gus3.jpg';
-            document.getElementById('polaroid-img-1').src = 'gus4.jpg';
-            document.getElementById('polaroid-img-2').src = 'gus2.jpg';
+            document.getElementById('receiver-img').src = avatarSources[0][0];
+            document.getElementById('polaroid-img-1').src = polaroid1Fallbacks[0];
+            document.getElementById('polaroid-img-2').src = polaroid2Fallbacks[0];
         });
 
-        // รายการไฟล์ภาพอวาตาร์หลักของเจ้าเด็กแบบหมุนวน (สไลด์หลักภาษาอังกฤษ)
-        const receiverFallbacks = [
-            'gus3.jpg',
-            'gus3.png',
-            'gus3.jpeg',
-            'gus3.JPG',
-            'gus3.PNG'
-        ];
-        let receiverFallbackIdx = 0;
-
+        // ระบบสำรองเมื่อรูปอวาตาร์หลักเสีย (จะค่อยๆ ขยับไล่ตามชื่อฟอร์แมตภาษาไทย/อังกฤษจนกว่าจะเจอ)
         function handleReceiverError() {
             const img = document.getElementById('receiver-img');
-            if (receiverFallbackIdx < receiverFallbacks.length - 1) {
-                receiverFallbackIdx++;
-                img.src = receiverFallbacks[receiverFallbackIdx];
+            const currentGroup = avatarSources[currentAvatarGroupIdx];
+            if (currentAvatarFallbackIdx < currentGroup.length - 1) {
+                currentAvatarFallbackIdx++;
+                img.src = currentGroup[currentAvatarFallbackIdx];
             } else {
                 img.style.display = 'none';
                 document.getElementById('receiver-fallback').style.display = 'flex';
@@ -850,11 +850,9 @@
 
         // ระบบสำรองของภาพโพลาลอยด์ 1 (gus4.jpg)
         const polaroid1Fallbacks = [
-            'gus4.jpg',
-            'gus4.png',
-            'gus4.jpeg',
-            'gus4.JPG',
-            'gus4.PNG'
+            'gus4.jpg', 'gus4.png', 'gus4.jpeg', 'gus4.JPG', 'gus4.PNG',
+            'เจ้าเด็ก4.jpg', 'เจ้าเด็ก4.png', 'เจ้าเด็ก4.jpeg', 'เจ้าเด็ก4.JPG', 'เจ้าเด็ก4.PNG',
+            '%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%814.jpg'
         ];
         let polaroid1Idx = 0;
 
@@ -869,11 +867,9 @@
 
         // ระบบสำรองของภาพโพลาลอยด์ 2 (gus2.jpg)
         const polaroid2Fallbacks = [
-            'gus2.jpg',
-            'gus2.png',
-            'gus2.jpeg',
-            'gus2.JPG',
-            'gus2.PNG'
+            'gus2.jpg', 'gus2.png', 'gus2.jpeg', 'gus2.JPG', 'gus2.PNG',
+            'เจ้าเด็ก2.jpg', 'เจ้าเด็ก2.png', 'เจ้าเด็ก2.jpeg', 'เจ้าเด็ก2.JPG', 'เจ้าเด็ก2.PNG',
+            '%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%812.jpg'
         ];
         let polaroid2Idx = 0;
 
@@ -886,20 +882,21 @@
             }
         }
 
-        let gusAvatarIdx = 0;
+        // ระบบสลับเปลี่ยนภาพอวาตาร์ไปมาเมื่อคลิก (รอบนี้แก้ไขไม่ให้พอกดคลิกแล้วรูปภาพหายค้างครับ!)
         function cycleGusAvatar() {
             playPopSound();
-            gusAvatarIdx = (gusAvatarIdx + 1) % 3;
-            const img = document.getElementById('receiver-img');
-            receiverFallbackIdx = 0; // รีเซ็ตการเช็กภาพเสีย
+            currentAvatarGroupIdx = (currentAvatarGroupIdx + 1) % 3;
+            currentAvatarFallbackIdx = 0; // รีเซ็ตการเช็กภาพเสียสำหรับกลุ่มใหม่
             
-            if (gusAvatarIdx === 0) {
-                img.src = 'gus3.jpg';
-            } else if (gusAvatarIdx === 1) {
-                img.src = 'gus4.jpg';
-            } else {
-                img.src = 'gus2.jpg';
-            }
+            const img = document.getElementById('receiver-img');
+            const fallback = document.getElementById('receiver-fallback');
+            
+            // สั่งให้กลับมาแสดงผลรูปภาพคู่ (และซ่อนไอคอนกรณีรูปแตกอันเดิมทิ้งไปก่อน)
+            img.style.display = 'block';
+            fallback.style.display = 'none';
+            
+            // กำหนดที่อยู่ภาพของกลุ่มใหม่ในลำดับแรกสุด
+            img.src = avatarSources[currentAvatarGroupIdx][0];
             
             for (let i = 0; i < 4; i++) {
                 createParticle(window.innerWidth / 2 + 100, window.innerHeight / 2, '💖');
@@ -1144,64 +1141,59 @@
             }, 10000);
         }
 
-        // อัลบั้มรูปเจ้าเด็กที่จะสุ่มเรียกลอยฟ้าเป็นภาษาอังกฤษเรียบร้อยแล้วครับ
-        const gusFloatingPool = [
-            'gus2.jpg',
-            'gus3.jpg',
-            'gus4.jpg'
-        ];
-
+        // ปล่อยฟองสบู่รูปเจ้าเด็กลอยฟรุ้งฟริ้งรอบหน้าจอ (ผูกเข้ากับระบบภาษาอังกฤษ/ภาษาไทยอัจฉริยะ)
         function spawnFloatingGusBubble() {
             if (document.hidden) return;
             
-            // สร้างกระดองครอบรูปวงกลม
             const bubble = document.createElement('div');
             bubble.className = 'floating-image-bubble';
             
-            // สุ่มรูปภาพเจ้าเด็ก
-            const chosenImgName = gusFloatingPool[Math.floor(Math.random() * gusFloatingPool.length)];
+            // สุ่มเรียกกลุ่มกลุ่มรูปภาพ 1 ใน 3 กลุ่มของเจ้าเด็ก
+            const groupIdx = Math.floor(Math.random() * 3);
+            const imgList = avatarSources[groupIdx];
             
-            // สร้างแท็กภาพ img ไว้ข้างใน
             const img = document.createElement('img');
-            img.src = chosenImgName;
+            img.src = imgList[0];
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'cover';
             img.alt = 'Gus Floating';
             
-            // ป้องกันรูปแตกด้วยอิมเมจสำรอง
+            // หากรูปภาพชนิดแรกของกลุ่มพัง ให้ไล่หารูปชนิดสำรองถัดไปทันที
+            let fallbackIdx = 0;
             img.onerror = function() {
-                this.src = 'https://placehold.co/100x100/ffe5ec/4a47a3?text=Gus';
+                if (fallbackIdx < imgList.length - 1) {
+                    fallbackIdx++;
+                    this.src = imgList[fallbackIdx];
+                } else {
+                    this.src = 'https://placehold.co/100x100/ffe5ec/4a47a3?text=Gus';
+                }
             };
             
             bubble.appendChild(img);
             
-            // สุ่มขนาด (ขนาดกำลังน่ารัก 50px - 75px)
             const randomSize = Math.floor(Math.random() * 25) + 50;
             bubble.style.width = randomSize + 'px';
             bubble.style.height = randomSize + 'px';
             
-            // สุ่มตำแหน่งซ้ายขวา และทิศทางมุมองศาการหมุนควง
             bubble.style.left = (Math.random() * 88) + 'vw';
             
             const spinDir = Math.random() > 0.5 ? 360 : -360;
             bubble.style.setProperty('--spin-degree', spinDir + 'deg');
             
-            // สุ่มระยะเวลาการลอย (7 - 12 วินาที)
             const randomDuration = (Math.random() * 5) + 7;
             bubble.style.animationDuration = randomDuration + 's';
             
             starsContainer.appendChild(bubble);
             
-            // ลบทิ้งเมื่อหมดแอนิเมชันลอยพ้นจอ
             setTimeout(() => {
                 bubble.remove();
             }, randomDuration * 1000);
         }
 
-        // ตั้งเวลาการปล่อยความมุ้งมิ้งรอบหลังคาห้อง
+        // ตั้งเวลาปล่อยกลุ่มหัวใจและฟองสบู่รูปเจ้าเด็กในพื้นหลังอย่างละมุนตา
         setInterval(spawnBackgroundHeart, 1500);       // ปล่อยหัวใจลอยเรื่อยๆ ทุก 1.5 วินาที
-        setInterval(spawnFloatingGusBubble, 4000);     // ปล่อยรูปเจ้าเด็กลอยฟรุ้งฟริ้งเรื่อยๆ ทุก 4 วินาที
+        setInterval(spawnFloatingGusBubble, 4000);     // ปล่อยรูปภาพเจ้าเด็กลอยฟรุ้งฟริ้งเรื่อยๆ ทุก 4 วินาที
     </script>
 </body>
 </html>
