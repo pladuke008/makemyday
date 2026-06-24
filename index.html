@@ -718,7 +718,7 @@
             <!-- ฝั่งเจ้าเด็ก -->
             <div class="avatar-box">
                 <div class="avatar-frame" onclick="cycleGusAvatar()" title="คลิกสลับรูปเจ้าเด็ก">
-                    <img id="receiver-img" src="" alt="เจ้าเด็ก" onerror="handleReceiverError()">
+                    <img id="receiver-img" src="gus3.jpg" alt="เจ้าเด็ก" onerror="handleReceiverError()">
                     <div id="receiver-fallback" class="fallback-icon" style="display:none;">
                         <i class="fa-solid fa-face-smile-wink"></i>
                     </div>
@@ -736,14 +736,14 @@
                 <!-- โพลาลอยด์ใบที่ 1 (รูปนั่งเล่นข้างนอก ยิ้มหวาน) -->
                 <div class="polaroid-card polaroid-1" onclick="openLightbox(document.getElementById('polaroid-img-1').src, 'คนเก่งยิ้มสวยที่สุดของพี่เลยนะ 🧸')">
                     <div class="polaroid-frame">
-                        <img id="polaroid-img-1" src="" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
+                        <img id="polaroid-img-1" src="gus4.jpg" alt="เจ้าเด็กใบที่ 1" onerror="handlePolaroid1Error(this)">
                     </div>
                     <div class="polaroid-caption">คนเก่งของพี่ 🧸</div>
                 </div>
                 <!-- โพลาลอยด์ใบที่ 2 (รูปคอลลาจเซลฟี่ 6 ช่อง) -->
                 <div class="polaroid-card polaroid-2" onclick="openLightbox(document.getElementById('polaroid-img-2').src, 'เจ้าเด็กดุ๊กดิ๊กแสนน่ารักทั้ง 6 ช่องเลย 🐰')">
                     <div class="polaroid-frame">
-                        <img id="polaroid-img-2" src="" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
+                        <img id="polaroid-img-2" src="gus2.jpg" alt="เจ้าเด็กใบที่ 2" onerror="handlePolaroid2Error(this)">
                     </div>
                     <div class="polaroid-caption">เจ้าเด็กแสนน่ารัก 🐰</div>
                 </div>
@@ -820,21 +820,20 @@
 
     <script>
         
-        // รันคำสั่งแปลงชื่อไฟล์ภาษาไทยเป็นรหัสสากล (Percent-Encoding) ทันทีที่เปิดหน้าจอ 
-        // ช่วยกู้ชีพรูปภาพภาษาไทยไม่ให้แตกบน GitHub Pages ได้ 100% ครับ
+        // รันคำสั่งผูกรูปภาพสากลภาษาอังกฤษทันทีที่หน้าเว็บโหลดเสร็จสมบูรณ์
         window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('receiver-img').src = encodeURIComponent('เจ้าเด็ก3.jpg');
-            document.getElementById('polaroid-img-1').src = encodeURIComponent('เจ้าเด็ก4.jpg');
-            document.getElementById('polaroid-img-2').src = encodeURIComponent('เจ้าเด็ก2.jpg');
+            document.getElementById('receiver-img').src = 'gus3.jpg';
+            document.getElementById('polaroid-img-1').src = 'gus4.jpg';
+            document.getElementById('polaroid-img-2').src = 'gus2.jpg';
         });
 
-        // รายการไฟล์ภาพอวาตาร์หลักของเจ้าเด็กแบบหมุนวน (สไลด์หลักแบบง่ายๆ)
+        // รายการไฟล์ภาพอวาตาร์หลักของเจ้าเด็กแบบหมุนวน (สไลด์หลักภาษาอังกฤษ)
         const receiverFallbacks = [
-            'เจ้าเด็ก3.jpg',
-            'เจ้าเด็ก3.png',
-            'เจ้าเด็ก3.jpeg',
-            'เจ้าเด็ก3.JPG',
-            'เจ้าเด็ก3.PNG'
+            'gus3.jpg',
+            'gus3.png',
+            'gus3.jpeg',
+            'gus3.JPG',
+            'gus3.PNG'
         ];
         let receiverFallbackIdx = 0;
 
@@ -842,46 +841,46 @@
             const img = document.getElementById('receiver-img');
             if (receiverFallbackIdx < receiverFallbacks.length - 1) {
                 receiverFallbackIdx++;
-                img.src = encodeURIComponent(receiverFallbacks[receiverFallbackIdx]);
+                img.src = receiverFallbacks[receiverFallbackIdx];
             } else {
                 img.style.display = 'none';
                 document.getElementById('receiver-fallback').style.display = 'flex';
             }
         }
 
-        // ระบบสำรองของภาพโพลาลอยด์ 1 (เจ้าเด็ก4.jpg)
+        // ระบบสำรองของภาพโพลาลอยด์ 1 (gus4.jpg)
         const polaroid1Fallbacks = [
-            'เจ้าเด็ก4.jpg',
-            'เจ้าเด็ก4.png',
-            'เจ้าเด็ก4.jpeg',
-            'เจ้าเด็ก4.JPG',
-            'เจ้าเด็ก4.PNG'
+            'gus4.jpg',
+            'gus4.png',
+            'gus4.jpeg',
+            'gus4.JPG',
+            'gus4.PNG'
         ];
         let polaroid1Idx = 0;
 
         function handlePolaroid1Error(img) {
             if (polaroid1Idx < polaroid1Fallbacks.length - 1) {
                 polaroid1Idx++;
-                img.src = encodeURIComponent(polaroid1Fallbacks[polaroid1Idx]);
+                img.src = polaroid1Fallbacks[polaroid1Idx];
             } else {
                 img.src = 'https://placehold.co/200x250/ffe5ec/4a47a3?text=Gus+1';
             }
         }
 
-        // ระบบสำรองของภาพโพลาลอยด์ 2 (เจ้าเด็ก2.jpg)
+        // ระบบสำรองของภาพโพลาลอยด์ 2 (gus2.jpg)
         const polaroid2Fallbacks = [
-            'เจ้าเด็ก2.jpg',
-            'เจ้าเด็ก2.png',
-            'เจ้าเด็ก2.jpeg',
-            'เจ้าเด็ก2.JPG',
-            'เจ้าเด็ก2.PNG'
+            'gus2.jpg',
+            'gus2.png',
+            'gus2.jpeg',
+            'gus2.JPG',
+            'gus2.PNG'
         ];
         let polaroid2Idx = 0;
 
         function handlePolaroid2Error(img) {
             if (polaroid2Idx < polaroid2Fallbacks.length - 1) {
                 polaroid2Idx++;
-                img.src = encodeURIComponent(polaroid2Fallbacks[polaroid2Idx]);
+                img.src = polaroid2Fallbacks[polaroid2Idx];
             } else {
                 img.src = 'https://placehold.co/200x250/e8f0fe/4a47a3?text=Gus+2';
             }
@@ -895,11 +894,11 @@
             receiverFallbackIdx = 0; // รีเซ็ตการเช็กภาพเสีย
             
             if (gusAvatarIdx === 0) {
-                img.src = encodeURIComponent('เจ้าเด็ก3.jpg');
+                img.src = 'gus3.jpg';
             } else if (gusAvatarIdx === 1) {
-                img.src = encodeURIComponent('เจ้าเด็ก4.jpg');
+                img.src = 'gus4.jpg';
             } else {
-                img.src = encodeURIComponent('เจ้าเด็ก2.jpg');
+                img.src = 'gus2.jpg';
             }
             
             for (let i = 0; i < 4; i++) {
@@ -913,7 +912,6 @@
             document.getElementById('sender-fallback').style.display = 'flex';
         }
 
-        
         // ระบบขยายรูปสไตล์ Lightbox
         function openLightbox(imgSrc, captionText) {
             playLetterSound();
@@ -962,7 +960,6 @@
             }
         }
 
-        
         function openEnvelope(element, text) {
             if (!element.classList.contains('opened')) {
                 playLetterSound();
@@ -1011,7 +1008,6 @@
             }
         }
 
-        
         let audioCtx = null;
         let isLullabyPlaying = false;
         let melodyInterval = null;
@@ -1131,7 +1127,6 @@
             }
         }
 
-        
         const starsContainer = document.getElementById('stars-container');
         const heartEmojis = ['💖', '💗', '💕', '❤️', '💝'];
         
@@ -1149,11 +1144,11 @@
             }, 10000);
         }
 
-        // อัลบั้มรูปเจ้าเด็กที่จะสุ่มเรียกลอยฟ้า
+        // อัลบั้มรูปเจ้าเด็กที่จะสุ่มเรียกลอยฟ้าเป็นภาษาอังกฤษเรียบร้อยแล้วครับ
         const gusFloatingPool = [
-            'เจ้าเด็ก2.jpg',
-            'เจ้าเด็ก3.jpg',
-            'เจ้าเด็ก4.jpg'
+            'gus2.jpg',
+            'gus3.jpg',
+            'gus4.jpg'
         ];
 
         function spawnFloatingGusBubble() {
@@ -1168,7 +1163,7 @@
             
             // สร้างแท็กภาพ img ไว้ข้างใน
             const img = document.createElement('img');
-            img.src = encodeURIComponent(chosenImgName);
+            img.src = chosenImgName;
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'cover';
@@ -1210,4 +1205,3 @@
     </script>
 </body>
 </html>
-```
